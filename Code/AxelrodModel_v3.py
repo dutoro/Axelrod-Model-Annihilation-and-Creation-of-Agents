@@ -1,4 +1,4 @@
-import numpy as np
+import numpy as np , copy
 from CellularAutomata import Agent
 from Rules_v2 import IntProb, printLattice_v1, plotlattice
 import matplotlib
@@ -12,10 +12,10 @@ import matplotlib.pyplot as plt
 #import CellularAutomata
 #crear agentes:
 
-N=8#largo del lattice
-q=5#números de opcones por caracterísitcas
+N=10#largo del lattice
+q=10#números de opcones por caracterísitcas
 F=3 #número de características
-NInteractions=600
+NInteractions=3000
 life=20
 ColorPallet=['viridis','inferno','PuBu','PuRd']
 
@@ -34,14 +34,14 @@ for i in range(N):
 
     lattice.append(l)
 
-#for f in range(F):
- #   nCV_f = plotlattice(lattice, f, N, ColorPallet)
+for f in range(F):
+    nCV_f = plotlattice(lattice, f, N, ColorPallet)
 
 n=0
 
 while n<=10:
     i=0
-    Lattice = lattice
+    Lattice = copy.deepcopy(lattice)
 
     while i <= NInteractions:
 
@@ -66,11 +66,11 @@ while n<=10:
             ChangeV = Lattice[J[0]][J[1]].CVector
             Lattice[I[0]][I[1]].ChangeCVector(ChangeV)
 
-        if i%200==0:
+        if i%1000==0 and i!=0:
             #        printLattice_v1(lattice, N)
             print(i)
             for f in range(F):
-                nCV_f=plotlattice(Lattice, f, N, ColorPallet)
+                plotlattice(Lattice, f, N, ColorPallet)
         #           np.savetxt('/Users/danieltoro/Documents/9no Semestre/IIQ3763 - Análisis de Sistemas Complejos/Proyecto/'
         #                     'Resultados/N5_q10_F2_NI10k_v2/txt/f'+str(f)+'_i'+str(i)+'.txt',nCV_f)
 

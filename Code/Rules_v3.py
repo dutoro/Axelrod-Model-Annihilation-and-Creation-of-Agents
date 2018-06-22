@@ -254,6 +254,7 @@ def plotlattice (lattice,f,N,ColorPallet):
     #crea un arreglo 2D con el el q=n para todos los elementos del lattice
 
     nCV=np.array([]).reshape(0,N)
+
     for fila in lattice:
         F=np.array([])
         for Agente in fila:
@@ -266,11 +267,14 @@ def plotlattice (lattice,f,N,ColorPallet):
     #generar el heatmap
 
     plt.imshow(nCV,cmap=ColorPallet[f])
+    plt.savefig('/Users/danieltoro/Documents/9no Semestre/IIQ3763 - Análisis de Sistemas Complejos/Proyecto/Resultados/'
+                'caca_'+str(f)+'.png')
     plt.show()
 
 
 
-    return nCV
+
+    return None
 
 
 
