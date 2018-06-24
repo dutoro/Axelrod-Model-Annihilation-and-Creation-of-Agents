@@ -29,3 +29,7 @@ class Agent:
     def Death(self,CVector):
         self.CVector=CVector
         self.life=0
+
+
+
+

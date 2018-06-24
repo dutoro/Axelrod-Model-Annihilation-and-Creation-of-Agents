@@ -1,6 +1,6 @@
 import numpy as np , copy
 from CellularAutomata import Agent
-from Rules_v2 import IntProb, printLattice_v1, plotlattice
+from Rules_final import IntProb, printLattice_v1, plotlattice, ChangeLife
 import matplotlib
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -13,9 +13,9 @@ import seaborn as sns
 #import CellularAutomata
 #crear agentes:
 
-N=5#largo del lattice
+N=10#largo del lattice
 q=2#números de opcones por caracterísitcas
-F=4 #número de características
+F=3 #número de características
 NInteractions=10000
 life=20
 ColorPallet=['viridis','inferno','PuBu','PuRd']
@@ -45,7 +45,7 @@ for f in range(F):
 
 n=1
 
-while n<=10:
+while n<=2:
     i=0
     Lattice = copy.deepcopy(lattice)
 
@@ -77,14 +77,17 @@ while n<=10:
             print(i)
             for f in range(F):
                 nCV,plot = plotlattice(Lattice, f, N, ColorPallet)
-                np.savetxt('/Users/danieltoro/Documents/9no Semestre/IIQ3763 - Análisis de Sistemas Complejos/Proyecto/Resultados/3/'
-                    'Text/' + str(f+1) + '_'+str(n)+'.txt', nCV)
-                plt.savefig('/Users/danieltoro/Documents/9no Semestre/IIQ3763 - Análisis de Sistemas Complejos/Proyecto/Resultados/3/'
-                    'Images/' + str(f+1) + '_'+str(n)+'.png')
+                #np.savetxt('/Users/danieltoro/Documents/9no Semestre/IIQ3763 - Análisis de Sistemas Complejos/Proyecto/Resultados/3/'
+                #    'Text/' + str(f+1) + '_'+str(n)+'.txt', nCV)
+                #plt.savefig('/Users/danieltoro/Documents/9no Semestre/IIQ3763 - Análisis de Sistemas Complejos/Proyecto/Resultados/3/'
+                #    'Images/' + str(f+1) + '_'+str(n)+'.png')
                 plt.show()
 
         #           np.savetxt('/Users/danieltoro/Documents/9no Semestre/IIQ3763 - Análisis de Sistemas Complejos/Proyecto/'
         #                     'Resultados/N5_q10_F2_NI10k_v2/txt/f'+str(f)+'_i'+str(i)+'.txt',nCV_f)
+
+        if n==2:
+            ChangeLife(Lattice,life,q,F)
 
         i = i + 1
 
