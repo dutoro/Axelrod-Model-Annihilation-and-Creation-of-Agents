@@ -10,7 +10,7 @@ import seaborn as sns
 
 
 
-#import CellularAutomata
+
 #crear agentes:
 
 N=10#largo del lattice
@@ -45,35 +45,31 @@ for f in range(F):
 
 n=1
 
-while n<=2:
+while n<=10:
     i=0
     Lattice = copy.deepcopy(lattice)
 
     while i <= NInteractions:
 
-        IP = IntProb(Lattice, N)
+        IP = IntProb(Lattice, N) 
 
-        I = np.random.randint(N, size=2)
-        #    print(I)
+        I = np.random.randint(N, size=2) #Ramdomly chose an agent.
 
         Vecinos = IP[np.array2string(I)]
-        #    print(Vecinos)
-        J = Vecinos.popitem()
+        
+        J = Vecinos.popitem() #Randomly chose a neighbor.
 
-        #    print(J)
         P_ij = J[1]  # Probabilidad que tiene i de interactuar con j
-        #    print(P_ij)
-        P_ji = IP[J[0]][np.array2string(I)]  # Probabilidad que tiene j de interactuar con i
-        #    print(P_ji)
 
-        if P_ij > 0 and P_ji > 0:
+        P_ji = IP[J[0]][np.array2string(I)]  # Probabilidad que tiene j de interactuar con i
+
+        if P_ij > 0 and P_ji > 0: #interact condition
             J = J[0]
             J = np.fromstring(J[1:len(J)], dtype=int, sep=' ')
             ChangeV = Lattice[J[0]][J[1]].CVector
             Lattice[I[0]][I[1]].ChangeCVector(ChangeV)
 
-        if i==NInteractions:
-            #        printLattice_v1(lattice, N)
+        if i==NInteractions:  
             print(i)
             for f in range(F):
                 nCV,plot = plotlattice(Lattice, f, N, ColorPallet)
@@ -82,31 +78,14 @@ while n<=2:
                 #plt.savefig('/Users/danieltoro/Documents/9no Semestre/IIQ3763 - Análisis de Sistemas Complejos/Proyecto/Resultados/3/'
                 #    'Images/' + str(f+1) + '_'+str(n)+'.png')
                 plt.show()
-
-        #           np.savetxt('/Users/danieltoro/Documents/9no Semestre/IIQ3763 - Análisis de Sistemas Complejos/Proyecto/'
-        #                     'Resultados/N5_q10_F2_NI10k_v2/txt/f'+str(f)+'_i'+str(i)+'.txt',nCV_f)
-
-        if n==2:
+                
+        if n>=6:
             ChangeLife(Lattice,life,q,F)
 
         i = i + 1
 
     n=n+1
 
-#print(lattice)
-#print(IP)
-
-#printLattice_v1(lattice,N)
-
-#primera interacción
-
-#FirstV = np.random.randint(N, size=2)  # selecciona el primer vector a interactuar
-#SecondV=IVSelection(IP,FirstV)
-
-#print(FirstV,SecondV)
-
-#print('después')
 
 
-i=0
 
