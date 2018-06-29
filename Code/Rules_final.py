@@ -5,22 +5,21 @@ import seaborn as sns
 
 
 
-def IntProb(lattice,N):
+def IntProb(lattice,N): #generate a matrix with de interaction probabilities
     Ip={}
 
     for fAgent in lattice:
-        #    print(fAgent)
+
         f = fAgent
         for Agent in f:
             vecinos = {}
-            #        print(Agent)
+
             position = Agent.position
             CVAgent = Agent.CVector
-            #        print(position)
+
             i = position[0]
             j = position[1]
 
-            #        print(i,j)
             if i != 0 and j != 0 and i != N - 1 and j != N - 1:  # toma todos menos los de los bordes
                 for fila in range(i - 1, i + 2):
                     for columna in range(j - 1, j + 2):
@@ -28,18 +27,17 @@ def IntProb(lattice,N):
                             or (fila==i and columna==j-1):
                             vecino = lattice[fila][columna]
                             pvecino = vecino.position
-                            #                        print("vecino", pvecino)
-                            #                        print(CVAgent)
+                
                             CVvecino = vecino.CVector
-                            #                        print(CVvecino)
+          
                             contador = 0
                             for k in range(len(CVAgent)):
                                 if CVAgent[k] == CVvecino[k]:
                                     contador = contador + 1
                             p = contador
-                            #                        print(fila,columna,P)
+                      
                             vecinos[np.array_str(pvecino)] = p
-            #            print(vecinos)
+   
 
             # Bordes sin esquinas
 
@@ -51,16 +49,14 @@ def IntProb(lattice,N):
                             vecino = lattice[fila][columna]
                             pvecino = vecino.position
 
-                            #                        print("vecino", pvecino)
-                            # print(CVAgent)
                             CVvecino = vecino.CVector
-                            # print(CVvecino)
+                         
                             contador = 0
                             for k in range(len(CVAgent)):
                                 if CVAgent[k] == CVvecino[k]:
                                     contador = contador + 1
                             p = contador
-                            #                        print(fila,columna,p)
+                      
                             vecinos[np.array_str(pvecino)] = p
 
             elif i == N - 1 and j != 0 and j != N - 1:  # borde inferior sin esquinas
@@ -71,16 +67,15 @@ def IntProb(lattice,N):
                             vecino = lattice[fila][columna]
                             pvecino = vecino.position
 
-                            #                        print("vecino", pvecino)
-                            # print(CVAgent)
+                          
                             CVvecino = vecino.CVector
-                            # print(CVvecino)
+                        
                             contador = 0
                             for k in range(len(CVAgent)):
                                 if CVAgent[k] == CVvecino[k]:
                                     contador = contador + 1
                             p = contador
-                            #                        print(fila,columna,p)
+                       
                             vecinos[np.array_str(pvecino)] = p
 
             elif j == 0 and i != N - 1 and i != 0:  # borde izquierdo sin esquinas
@@ -91,16 +86,15 @@ def IntProb(lattice,N):
                             vecino = lattice[fila][columna]
                             pvecino = vecino.position
 
-                            #                        print("vecino", pvecino)
-                            # print(CVAgent)
+                       
                             CVvecino = vecino.CVector
-                            # print(CVvecino)
+                      
                             contador = 0
                             for k in range(len(CVAgent)):
                                 if CVAgent[k] == CVvecino[k]:
                                     contador = contador + 1
                             p = contador
-                            #                        print(fila,columna,p)
+                    
                             vecinos[np.array_str(pvecino)] = p
 
             elif j == N - 1 and i != N - 1 and i != 0:  # borde derecho sin esquinas
@@ -111,16 +105,15 @@ def IntProb(lattice,N):
                             vecino = lattice[fila][columna]
                             pvecino = vecino.position
 
-                            #                        print("vecino", pvecino)
-                            # print(CVAgent)
+                        
                             CVvecino = vecino.CVector
-                            # print(CVvecino)
+                
                             contador = 0
                             for k in range(len(CVAgent)):
                                 if CVAgent[k] == CVvecino[k]:
                                     contador = contador + 1
                             p = contador
-                            #                        print(fila,columna,p)
+                   
                             vecinos[np.array_str(pvecino)] = p
 
             # Esquinas
@@ -133,16 +126,15 @@ def IntProb(lattice,N):
                             vecino = lattice[fila][columna]
                             pvecino = vecino.position
 
-                            #                       print("vecino", pvecino)
-                            # print(CVAgent)
+                            
                             CVvecino = vecino.CVector
-                            # print(CVvecino)
+                        
                             contador = 0
                             for k in range(len(CVAgent)):
                                 if CVAgent[k] == CVvecino[k]:
                                     contador = contador + 1
                             p = contador
-                            #                        print(fila,columna,p)
+                      
                             vecinos[np.array_str(pvecino)] = p
 
             elif i == 0 and j == N - 1:
@@ -153,16 +145,15 @@ def IntProb(lattice,N):
                             vecino = lattice[fila][columna]
                             pvecino = vecino.position
 
-                            #                        print("vecino", pvecino)
-                            # print(CVAgent)
+                      
                             CVvecino = vecino.CVector
-                            # print(CVvecino)
+                      
                             contador = 0
                             for k in range(len(CVAgent)):
                                 if CVAgent[k] == CVvecino[k]:
                                     contador = contador + 1
                             p = contador
-                            #                        print(fila,columna,p)
+                       
                             vecinos[np.array_str(pvecino)] = p
 
 
@@ -174,16 +165,15 @@ def IntProb(lattice,N):
                             vecino = lattice[fila][columna]
                             pvecino = vecino.position
 
-                            #                        print("vecino", pvecino)
-                            # print(CVAgent)
+                   
                             CVvecino = vecino.CVector
-                            # print(CVvecino)
+                       
                             contador = 0
                             for k in range(len(CVAgent)):
                                 if CVAgent[k] == CVvecino[k]:
                                     contador = contador + 1
                             p = contador
-                            #                        print(fila,columna,p)
+                         
                             vecinos[np.array_str(pvecino)] = p
 
             elif i == N - 1 and j == N - 1:
@@ -194,16 +184,15 @@ def IntProb(lattice,N):
                             vecino = lattice[fila][columna]
                             pvecino = vecino.position
 
-                            #                        print("vecino", pvecino)
-                            # print(CVAgent)
+                     
                             CVvecino = vecino.CVector
-                            # print(CVvecino)
+                  
                             contador = 0
                             for k in range(len(CVAgent)):
                                 if CVAgent[k] == CVvecino[k]:
                                     contador = contador + 1
                             p = contador
-                            #                        print(fila,columna,p)
+                          
                             vecinos[np.array_str(pvecino)] = p
 
             Ip[np.array_str(position)] = vecinos
@@ -226,43 +215,18 @@ def IntProb(lattice,N):
 
 
 
-
-
-
-#    print (IP)
     return IP
 
 
-#def IVSelection (IP,FirstV):
-
-#    FVP=IP[np.array_str(FirstV)] #Extrae la probabilidad de interactuar los vecinos (Diccionario)
-#    i=0
-#    while i<=4:
-#        SVP=FVP.popitem()
-#        SV=SVP[0]
-#        if IP[np.array_str(FirstV)][SVP[1]]<=IP[SVP[1]][np.array_str(FirstV)]:
-#            return np.fromstring(SVP[1:len(SecondV)], dtype=int, sep=' ')
-#        i=i+1
 
 
-
-#def IVSelection (IP,FirstV):
-#    FirstV = np.random.randint(N, size=2)  # selecciona el primer vector a interactuar
-
-    # Seleccionar el segundo vector, el cual debe ser el de mayor probabilidad de interactuar
-
-#    FVProbs = IP[np.array_str(FirstV)]
-#    for vecino in FVProbs:
- #       if
-
-
-def printLattice_v1(lattice,N):
+def printLattice_v1(lattice,N): #print the lattice showing the position and the cultural vector.
     for i in range(N):
         for j in range(N):
             print(lattice[i][j].position, lattice[i][j].CVector)
 
 
-def plotlattice (lattice,f,N,ColorPallet):
+def plotlattice (lattice,f,N,ColorPallet): #Plot the lattice, only the f feature.
 
     #crea un arreglo 2D con el el q=n para todos los elementos del lattice
 
@@ -273,21 +237,13 @@ def plotlattice (lattice,f,N,ColorPallet):
             F=np.append(F,Agente.CVector[f])
 
         F=np.array([F])
-#        print(F)
         nCV=np.concatenate((nCV,F))
-
-
-    #generar el heatmap
-
-        #    plt.imshow(nCV,cmap=ColorPallet[f])
-        #    plt.savefig('/Users/danieltoro/Documents/9no Semestre/IIQ3763 - Análisis de Sistemas Complejos/Proyecto/Resultados/'
-        #                'caca_'+str(f)+'.png')
-        #    plt.show()
 
     return nCV, sns.heatmap(nCV,cmap=ColorPallet[f])
 
 
-def ChangeLife (lattice,life,q,F):
+def ChangeLife (lattice,life,q,F): #update the life of eveey agent and change the cultural vector if the agent reach the 
+                                   #boundary life.
     for fila in lattice:
         for Agent in fila:
             Agent.life=Agent.life+1
